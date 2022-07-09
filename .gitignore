@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+templates/data/*
+templates/cabinets/*
+templates/groups/*
+templates/teachers/*
+.vscode/

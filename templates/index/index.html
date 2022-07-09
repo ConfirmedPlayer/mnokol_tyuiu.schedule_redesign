@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="static/index.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="static/index_before.js"></script>
+    <title>Добро пожаловать!</title>
+  </head>
+  <body>
+
+    <div class="wrapper">
+      <div class="select-btn">
+        <span>Выберите группу</span>
+        <i class="uil uil-angle-down"></i>
+      </div>
+      <div class="content">
+        <div class="search">
+          <i class="uil uil-search"></i>
+          <input id="mainInput" spellcheck="false" type="text" placeholder="Поиск" maxlength="15" onkeyup="filterFunction()" onkeypress="NoWhitespace(event)">
+        </div>
+        <ul class="options" id="parent_options"></ul>
+      </div>
+    </div>
+
+    <div class="wrapper2">
+      <div class="select-btn">
+        <span>Выберите преподавателя</span>
+        <i class="uil uil-angle-down"></i>
+      </div>
+      <div class="content">
+        <div class="search">
+          <i class="uil uil-search"></i>
+          <input id="mainInput2" spellcheck="false" type="text" placeholder="Поиск" maxlength="15" onkeyup="filterFunction2()" onkeypress="NoWhitespace(event)">
+        </div>
+        <ul class="options" id="parent_options2"></ul>
+      </div>
+    </div>
+
+    <div class="wrapper3">
+      <div class="select-btn">
+        <span>Выберите кабинет</span>
+        <i class="uil uil-angle-down"></i>
+      </div>
+      <div class="content">
+        <div class="search">
+          <i class="uil uil-search"></i>
+          <input id="mainInput3" spellcheck="false" type="text" placeholder="Поиск" maxlength="15" onkeyup="filterFunction3()" onkeypress="NoWhitespace(event)">
+        </div>
+        <ul class="options" id="parent_options3"></ul>
+      </div>
+    </div>
+
+    <script src="static/index.js"></script>
+  </body>
+</html>
