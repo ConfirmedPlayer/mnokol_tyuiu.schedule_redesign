@@ -133,3 +133,4 @@ templates/cabinets/*
 templates/groups/*
 templates/teachers/*
 .vscode/
+!.gitkeep
