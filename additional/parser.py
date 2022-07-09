@@ -38,8 +38,8 @@ async def parse_groups(page_loading_delay: int | float):
             html = await page.content()
 
             await asyncio.sleep(300)
-        else:
-            logger.info('Groups found in HTML')
+
+        logger.info('Groups found in HTML')
 
         soup = BeautifulSoup(html, 'lxml')
         zero_group = soup.find('option').find_next()
@@ -97,8 +97,8 @@ async def parse_teachers(page_loading_delay: int | float):
             html = await page.content()
 
             await asyncio.sleep(300)
-        else:
-            logger.info('Teachers found in HTML')
+
+        logger.info('Teachers found in HTML')
 
         soup = BeautifulSoup(html, 'lxml')
         zero_teacher = soup.find('option', {'id': 'prep0', 'value': '0'}).find_next()
@@ -158,8 +158,8 @@ async def parse_cabinets(page_loading_delay: int | float):
             html = await page.content(page_loading_delay)
 
             await asyncio.sleep(300)
-        else:
-            logger.info('Cabinets found in HTML')
+
+        logger.info('Cabinets found in HTML')
 
         soup = BeautifulSoup(html, 'lxml')
         zero_cabinet = soup.find('option', {'id': 'cab0', 'value': '0'}).find_next()
