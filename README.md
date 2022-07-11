@@ -24,7 +24,9 @@
 
 ## Скриншоты / Сравнение
 
-<img src="https://raw.githubusercontent.com/ConfirmedPlayer/ConfirmedPlayer/c02147ae69002c8b4def5a2bdf19b23fd6123a66/sources/mnokol_tyuiu.schedule_redesign/website_showcase.gif"/>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ConfirmedPlayer/ConfirmedPlayer/master/sources/mnokol_tyuiu.schedule_redesign/showcase.gif"/>
+</p>
 <img src="https://raw.githubusercontent.com/ConfirmedPlayer/ConfirmedPlayer/master/sources/mnokol_tyuiu.schedule_redesign/comparison.png"/>
 <img src="https://raw.githubusercontent.com/ConfirmedPlayer/ConfirmedPlayer/master/sources/mnokol_tyuiu.schedule_redesign/session_showcase.jpg"/>
 <img src="https://raw.githubusercontent.com/ConfirmedPlayer/ConfirmedPlayer/master/sources/mnokol_tyuiu.schedule_redesign/default.png"/>
