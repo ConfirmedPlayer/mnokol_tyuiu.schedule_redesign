@@ -29,8 +29,9 @@ async def parse_groups(page_loading_delay: int | float):
         await page.goto(schedule_url)
         await asyncio.sleep(page_loading_delay)
         html = await page.content()
+        html = r''.join(html)
 
-        while '(9)' not in rf'{html}' or '(11)' not in rf'{html}':
+        while not any(group in html for group in ('(9)', '(11)')):
             logger.info('Groups not found in HTML. Trying again')
 
             await page.goto(schedule_url)
@@ -71,7 +72,8 @@ async def parse_teachers(page_loading_delay: int | float):
     """
     Находит все HTML-тэги с преподавателями МПК ТИУ \n
     Игнорирует расписание сразу нескольких преподавателей по типу: \n
-    Иванов И.И. / Петрова Б.А, Королев О.А. и т.д.
+    Иванов И.И. / Петрова Б.А, Королев О.А. и т.д. \n
+    Также игнорирует вакансии
 
 
     Возвращает (записывает в .html) <a> тэги с атрибутами value, id, где:
@@ -88,8 +90,9 @@ async def parse_teachers(page_loading_delay: int | float):
         await page.goto(schedule_url)
         await asyncio.sleep(page_loading_delay)
         html = await page.content()
+        html = r''.join(html)
 
-        while 'Преподаватели' not in rf'{html}':
+        while 'Преподаватели' not in html:
             logger.info('Teachers not found in HTML. Trying again')
 
             await page.goto(schedule_url)
@@ -108,17 +111,17 @@ async def parse_teachers(page_loading_delay: int | float):
                                  'w',
                                  encoding='UTF-8') as temp:
             data = ''
+            blacklist = (',', '/', 'Вакансия', 'ВАКАНСИЯ')
+
             for teacher_tag in all_teachers:
-                if ',' in teacher_tag.text or '/' in teacher_tag.text:
+                if any(teacher in teacher_tag.text for teacher in blacklist):
                     continue
-                else:
-                    teacher_name = teacher_tag.text
 
                 teacher_tag_attributes = soup.find('option', string=teacher_tag.text).attrs
                 value = teacher_tag_attributes.get('value')
 
-                data += f'<a id="{teacher_name}" value="{value}" \
-                    onclick="updateName2(this)">{teacher_name}</a>'
+                data += f'<a id="{teacher_tag.text}" value="{value}" \
+                    onclick="updateName2(this)">{teacher_tag.text}</a>'
 
             await temp.write(data)
 
@@ -149,8 +152,9 @@ async def parse_cabinets(page_loading_delay: int | float):
         await page.goto(schedule_url)
         await asyncio.sleep(page_loading_delay)
         html = await page.content()
+        html = r''.join(html)
 
-        while 'Все кабинеты' not in rf'{html}':
+        while 'Все кабинеты' not in html:
             logger.info('Cabinets not found in HTML. Trying again')
 
             await page.goto(schedule_url)
