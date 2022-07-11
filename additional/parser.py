@@ -46,18 +46,19 @@ async def parse_groups(page_loading_delay: int | float):
         zero_group = soup.find('option').find_next()
         all_groups = zero_group.find_next_siblings()
 
+        data = ''
+
+        for group_tag in all_groups:
+            group_tag_attributes = soup.find('option', string=group_tag.text).attrs
+            sid = group_tag_attributes.get('sid')
+            gr = group_tag_attributes.get('value')
+
+            data += f'<a id="{group_tag.text}" sid="{sid}" gr="{gr}" \
+                    onclick="updateName(this)">{group_tag.text}</a>'
+
         async with aiofiles.open('../templates/data/groups_data.html',
                                  'w',
                                  encoding='UTF-8') as temp:
-            data = ''
-            for group_tag in all_groups:
-                group_tag_attributes = soup.find('option', string=group_tag.text).attrs
-                sid = group_tag_attributes.get('sid')
-                gr = group_tag_attributes.get('value')
-
-                data += f'<a id="{group_tag.text}" sid="{sid}" gr="{gr}" \
-                    onclick="updateName(this)">{group_tag.text}</a>'
-
             await temp.write(data)
 
         await browser.close()
@@ -107,22 +108,22 @@ async def parse_teachers(page_loading_delay: int | float):
         zero_teacher = soup.find('option', {'id': 'prep0', 'value': '0'}).find_next()
         all_teachers = zero_teacher.find_next_siblings()
 
+        data = ''
+        blacklist = (',', '/', 'Вакансия', 'ВАКАНСИЯ')
+
+        for teacher_tag in all_teachers:
+            if any(teacher in teacher_tag.text for teacher in blacklist):
+                continue
+
+            teacher_tag_attributes = soup.find('option', string=teacher_tag.text).attrs
+            value = teacher_tag_attributes.get('value')
+
+            data += f'<a id="{teacher_tag.text}" value="{value}" \
+                    onclick="updateName2(this)">{teacher_tag.text}</a>'
+
         async with aiofiles.open('../templates/data/teachers_data.html',
                                  'w',
                                  encoding='UTF-8') as temp:
-            data = ''
-            blacklist = (',', '/', 'Вакансия', 'ВАКАНСИЯ')
-
-            for teacher_tag in all_teachers:
-                if any(teacher in teacher_tag.text for teacher in blacklist):
-                    continue
-
-                teacher_tag_attributes = soup.find('option', string=teacher_tag.text).attrs
-                value = teacher_tag_attributes.get('value')
-
-                data += f'<a id="{teacher_tag.text}" value="{value}" \
-                    onclick="updateName2(this)">{teacher_tag.text}</a>'
-
             await temp.write(data)
 
         await browser.close()
@@ -169,17 +170,18 @@ async def parse_cabinets(page_loading_delay: int | float):
         zero_cabinet = soup.find('option', {'id': 'cab0', 'value': '0'}).find_next()
         all_cabinets = zero_cabinet.find_next_siblings()
 
+        data = ''
+
+        for cabinet_tag in all_cabinets:
+            cabinet_tag_attributes = soup.find('option', string=cabinet_tag.text).attrs
+            value = cabinet_tag_attributes.get('value')
+
+            data += f'<a id="{cabinet_tag.text}" value="{value}" \
+                    onclick="updateName3(this)">{cabinet_tag.text}</a>'
+
         async with aiofiles.open('../templates/data/cabinets_data.html',
                                  'w',
                                  encoding='UTF-8') as temp:
-            data = ''
-            for cabinet_tag in all_cabinets:
-                cabinet_tag_attributes = soup.find('option', string=cabinet_tag.text).attrs
-                value = cabinet_tag_attributes.get('value')
-
-                data += f'<a id="{cabinet_tag.text}" value="{value}" \
-                    onclick="updateName3(this)">{cabinet_tag.text}</a>'
-
             await temp.write(data)
 
         await browser.close()

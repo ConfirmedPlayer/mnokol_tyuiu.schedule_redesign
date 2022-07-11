@@ -96,7 +96,7 @@ async def groups_api():
 
     year = datetime.datetime.now().year
 
-    if group and len(group) in range(8, 20):
+    if all((group, sid, gr)) and len(group) in range(8, 20):
         try:
             filename = await get_schedule_by_group_name(group, sid, gr, year)
             return render_template(f'groups/{filename}')
@@ -113,7 +113,7 @@ async def teachers_api():
 
     year = datetime.datetime.now().year
 
-    if teacher and teacher_id:
+    if all((teacher, teacher_id)):
         try:
             filename = await get_schedule_by_teacher_name(teacher, teacher_id, year)
             return render_template(f'teachers/{filename}')
@@ -130,7 +130,7 @@ async def cabinets_api():
 
     year = datetime.datetime.now().year
 
-    if cabinet and cabinet_id:
+    if all((cabinet, cabinet_id)):
         try:
             filename = await get_schedule_by_cabinet_name(cabinet, cabinet_id, year)
             return render_template(f'cabinets/{filename}')
