@@ -1,3 +1,4 @@
+from addons import pyppeteer_args
 from schedule_links import schedule_menu_url as schedule_url
 
 from bs4 import BeautifulSoup
@@ -24,7 +25,7 @@ async def parse_groups(page_loading_delay: int | float):
     Группы, как правило, загружаются намного быстрее, чем преподаватели и кабинеты
     """
     while True:
-        browser = await launch()
+        browser = await launch(args=pyppeteer_args)
         page = await browser.newPage()
         await page.goto(schedule_url)
         await asyncio.sleep(page_loading_delay)
@@ -86,7 +87,7 @@ async def parse_teachers(page_loading_delay: int | float):
     page_loading_delay нужен для того чтобы дать полностью загрузиться JS и самой странице.
     """
     while True:
-        browser = await launch()
+        browser = await launch(args=pyppeteer_args)
         page = await browser.newPage()
         await page.goto(schedule_url)
         await asyncio.sleep(page_loading_delay)
@@ -148,7 +149,7 @@ async def parse_cabinets(page_loading_delay: int | float):
     page_loading_delay нужен для того чтобы дать полностью загрузиться JS и самой странице.
     """
     while True:
-        browser = await launch()
+        browser = await launch(args=pyppeteer_args)
         page = await browser.newPage()
         await page.goto(schedule_url)
         await asyncio.sleep(page_loading_delay)
