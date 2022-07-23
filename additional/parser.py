@@ -33,7 +33,7 @@ async def parse_groups(page_loading_delay: int | float):
         html = r''.join(html)
 
         while not any(group in html for group in ('(9)', '(11)')):
-            logger.info('Groups not found in HTML. Trying again')
+            logger.warning('Groups not found in HTML. Trying again')
 
             await page.goto(schedule_url)
             await asyncio.sleep(page_loading_delay)
@@ -41,7 +41,7 @@ async def parse_groups(page_loading_delay: int | float):
 
             await asyncio.sleep(300)
 
-        logger.info('Groups found in HTML')
+        logger.success('Groups found in HTML')
 
         soup = BeautifulSoup(html, 'lxml')
         zero_group = soup.find('option').find_next()
@@ -95,7 +95,7 @@ async def parse_teachers(page_loading_delay: int | float):
         html = r''.join(html)
 
         while 'Преподаватели' not in html:
-            logger.info('Teachers not found in HTML. Trying again')
+            logger.warning('Teachers not found in HTML. Trying again')
 
             await page.goto(schedule_url)
             await asyncio.sleep(page_loading_delay)
@@ -103,7 +103,7 @@ async def parse_teachers(page_loading_delay: int | float):
 
             await asyncio.sleep(300)
 
-        logger.info('Teachers found in HTML')
+        logger.success('Teachers found in HTML')
 
         soup = BeautifulSoup(html, 'lxml')
         zero_teacher = soup.find('option', {'id': 'prep0', 'value': '0'}).find_next()
@@ -157,7 +157,7 @@ async def parse_cabinets(page_loading_delay: int | float):
         html = r''.join(html)
 
         while 'Все кабинеты' not in html:
-            logger.info('Cabinets not found in HTML. Trying again')
+            logger.warning('Cabinets not found in HTML. Trying again')
 
             await page.goto(schedule_url)
             await asyncio.sleep(page_loading_delay)
@@ -165,7 +165,7 @@ async def parse_cabinets(page_loading_delay: int | float):
 
             await asyncio.sleep(300)
 
-        logger.info('Cabinets found in HTML')
+        logger.success('Cabinets found in HTML')
 
         soup = BeautifulSoup(html, 'lxml')
         zero_cabinet = soup.find('option', {'id': 'cab0', 'value': '0'}).find_next()
