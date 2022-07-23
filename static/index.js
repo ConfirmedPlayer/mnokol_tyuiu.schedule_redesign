@@ -48,16 +48,19 @@ function updateName3(cabinet_tag)
 
 
 selectBtn.addEventListener("click", () => {
+    document.getElementById('parent_options2').scrollTop = 0;
+    document.getElementById('parent_options3').scrollTop = 0;
+
     wrapper.classList.toggle("active");
 
     wrapper2.classList.remove('active');
     wrapper3.classList.remove('active');
-
-    options2.scrollTo(top);
-    options3.scrollTo(top);
 });
 
 selectBtn2.addEventListener("click", () => {
+    document.getElementById('parent_options').scrollTop = 0;
+    document.getElementById('parent_options3').scrollTop = 0;
+
     wrapper2.classList.toggle("active");
 
     wrapper.classList.remove('active');
@@ -65,6 +68,9 @@ selectBtn2.addEventListener("click", () => {
 });
 
 selectBtn3.addEventListener("click", () => {
+    document.getElementById('parent_options').scrollTop = 0;
+    document.getElementById('parent_options2').scrollTop = 0;
+
     wrapper3.classList.toggle("active");
 
     wrapper.classList.remove('active');
