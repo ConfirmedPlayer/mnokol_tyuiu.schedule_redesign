@@ -3,7 +3,7 @@
 
 ## Доступ
 
-# САЙТ ДОСТУПЕН ЗДЕСЬ - <a href="https://temnomor.ru" target="_blank">TEMNOMORRU</a>
+# САЙТ ДОСТУПЕН ЗДЕСЬ: <p><a href="https://temnomor.ru" target="_blank" rel="noopener noreferrer">TEMNOMOR.RU</a></p>
 
 
 ## Особенности
