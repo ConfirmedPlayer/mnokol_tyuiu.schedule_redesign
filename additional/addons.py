@@ -1,6 +1,7 @@
 list_of_addons = ['<link rel="stylesheet" href="/static/shed.css">',
                   '<link rel="stylesheet" href="https://temnomor.ru/static/shed.css">',
                   '<link rel="shortcut icon" href="{{ url_for("static", filename="favicon.ico") }}">',
+                  '<script defer src="/static/shed.js"></script>'
                   '<meta http-equiv="refresh" content="120">',
                   '<div class="comm2"><span class="session_example">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  - сессия</div>',
                   '<div class="comm2"><span class="practice_example">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  - производственная практика</div>',
